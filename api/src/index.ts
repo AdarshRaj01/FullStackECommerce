@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {json, urlencoded} from 'express';
 import productRoutes from './routes/products/index';  // Import product routes
 
 
@@ -6,6 +6,7 @@ const app = express()
 const port = 3000
 
 // Middleware to parse JSON bodies
+app.use(urlencoded({ extended: false }));
 app.use(express.json());
 
 // Use product routes
