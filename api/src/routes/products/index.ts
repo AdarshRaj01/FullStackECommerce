@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createProduct, deleteProduct, getProductbyId, listProducts, updateProduct } from "./productController";
-import { validateData } from "../../middlewares/validationMiddleware";
-import { createProductSchema, updateProductSchema } from "../../db/productSchema";
-import { verifySeller, verifyToken } from "../../middlewares/authMiddleware";
+import { createProduct, deleteProduct, getProductbyId, listProducts, updateProduct } from "./productController.js";
+import { validateData } from "../../middlewares/validationMiddleware.js";
+import { createProductSchema, updateProductSchema } from "../../db/productSchema.js";
+import { verifySeller, verifyToken } from "../../middlewares/authMiddleware.js";
 
 
 // const createProductSchema = z.object({
