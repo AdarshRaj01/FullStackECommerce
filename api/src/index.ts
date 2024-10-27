@@ -1,5 +1,6 @@
 import express, {json, urlencoded} from 'express';
 import productRoutes from './routes/products/index';  // Import product routes
+import authRoutes from './routes/auth/index'; // Import auth routes
 
 
 const app = express()
@@ -11,6 +12,9 @@ app.use(express.json());
 
 // Use product routes
 app.use('/api/v1/products', productRoutes);
+
+// Use auth routes
+app.use('/api/v1/auth', authRoutes);
 
 
 

@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { createProduct, deleteProduct, getProductbyId, listProducts, updateProduct } from "./productController";
 import { validateData } from "../../middlewares/validationMiddleware";
-import {z} from 'zod'
-import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import { createProductSchema, productsTable, updateProductSchema } from "../../db/productSchema";
+import { createProductSchema, updateProductSchema } from "../../db/productSchema";
+import { verifySeller, verifyToken } from "../../middlewares/authMiddleware";
 
 
 // const createProductSchema = z.object({
@@ -24,13 +23,13 @@ router.get('/',listProducts)
 router.get('/:id', getProductbyId)
 
 //post a new product
-router.post('/',validateData(createProductSchema),createProduct)
+router.post('/',verifyToken, verifySeller, validateData(createProductSchema),createProduct)
 
 //update a product
-router.put('/:id', validateData(updateProductSchema),updateProduct)
+router.put('/:id',verifyToken, verifySeller, validateData(updateProductSchema),updateProduct)
 
 //delete a product
-router.delete('/:id', deleteProduct)
+router.delete('/:id',verifyToken, verifySeller, deleteProduct)
 
 
 
