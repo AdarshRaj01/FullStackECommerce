@@ -15,6 +15,13 @@
       "when": 1730012296197,
       "tag": "0001_eminent_gabe_jones",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1730132978972,
+      "tag": "0002_supreme_cyclops",
+      "breakpoints": true
     }
   ]
 }
