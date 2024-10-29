@@ -8,7 +8,18 @@ import "@/global.css";
 export default function RootLayout(){
     return (
         <GluestackUIProvider mode="light">
-            <Stack />
+            <Stack>
+                <Stack.Screen name="index" options={{
+                    title:"Shop",
+                    headerTitleAlign: "center",
+                }}/>
+                <Stack.Screen name="products/[id]" options={{
+                    title:"Product",
+                    headerTitleAlign: "center",
+
+                }}/>
+
+            </Stack>
         </GluestackUIProvider>
     )
 }
