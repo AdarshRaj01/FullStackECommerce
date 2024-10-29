@@ -27,7 +27,6 @@ router.post('/signup', validateData(createUserSchema), async (req, res):Promise<
 
         // Hash the password before storing
         data.password = await bcrypt.hash(data.password, 10);
-        console.log(data.role)
 
         // Insert the new user and return only necessary fields
         const [user] = await db.insert(usersTable).values(data).returning({

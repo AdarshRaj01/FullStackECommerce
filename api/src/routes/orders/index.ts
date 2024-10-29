@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createOrder } from "./ordersController.js";
+import { createOrder , getOrderWithItems, listUsersOrders, updateOrder} from "./ordersController.js";
 import { validateData } from "../../middlewares/validationMiddleware.js";
-import { insertOrderSchema, insertOrderWithItemSchema } from "../../db/ordersSchema.js";
+import { insertOrderSchema, insertOrderWithItemSchema, updateOrderSchema } from "../../db/ordersSchema.js";
 import { verifyToken } from "../../middlewares/authMiddleware.js";
 
 
@@ -13,7 +13,13 @@ router.post('/',verifyToken ,validateData(insertOrderWithItemSchema) ,createOrde
 
 
 //get the orders
-//router.get('/', listOrders)
+router.get('/',verifyToken, listUsersOrders)
+
+//get orders by id
+router.get('/:id',verifyToken, getOrderWithItems)
+
+//update order
+router.put('/:id',verifyToken, validateData(updateOrderSchema), updateOrder)
 
 
 
