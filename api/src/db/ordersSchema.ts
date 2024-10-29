@@ -1,6 +1,6 @@
 import { pgTable, integer, varchar, timestamp, boolean, doublePrecision } from 'drizzle-orm/pg-core';
-import { usersTable } from './userSchema'; // Assuming a users table is defined
-import { productsTable } from './productSchema'; // Assuming a products table is defined
+import { usersTable } from './userSchema.js'; // Assuming a users table is defined
+import { productsTable } from './productSchema.js'; // Assuming a products table is defined
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
