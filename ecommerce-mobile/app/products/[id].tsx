@@ -7,13 +7,27 @@ import { VStack } from '@/components/ui/vstack';
 import { Heading } from '@/components/ui/heading';
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
+import { useQuery } from '@tanstack/react-query';
+import { fetchProductById } from '@/api/product';
+import { ActivityIndicator } from 'react-native';
 
 export default function ProductDetailsScreen(){
     const {id} = useLocalSearchParams()
 
-    const product = products.find(p => p.id === Number(id))
-    if(!product)
-        return <Text>Product not found</Text>
+    const {data:product, isLoading, error} = useQuery({
+        queryKey:['products',id],
+        queryFn: () => fetchProductById(Number(id))
+    })
+
+    if(isLoading){
+        return <ActivityIndicator />
+    }
+
+    if(error){
+        console.log(error)
+        return <Text>Error in fetching product</Text>
+    }
+
     return(
         <Box className=' flex-1 justify-center items-center p-3 '>
             <Stack.Screen options={{
