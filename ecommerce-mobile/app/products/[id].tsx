@@ -10,14 +10,24 @@ import { Button, ButtonText } from '@/components/ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProductById } from '@/api/product';
 import { ActivityIndicator } from 'react-native';
+import { useCart } from '@/store/cartStore';
 
 export default function ProductDetailsScreen(){
     const {id} = useLocalSearchParams()
+
+    const addProduct = useCart((state)=>(state.addProduct))
+    const cartItems = useCart(state=>state.items)
+
+    console.log(JSON.stringify(cartItems))
 
     const {data:product, isLoading, error} = useQuery({
         queryKey:['products',id],
         queryFn: () => fetchProductById(Number(id))
     })
+
+    const addToCart = () => {
+        addProduct(product)
+    }
 
     if(isLoading){
         return <ActivityIndicator />
@@ -65,6 +75,7 @@ export default function ProductDetailsScreen(){
             >
                 <Button
                 className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
+                onPress={addToCart}
                 >
                 <ButtonText size="sm">Add to cart</ButtonText>
                 </Button>
